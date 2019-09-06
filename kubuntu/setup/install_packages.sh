@@ -1,5 +1,5 @@
 #!/bin/bash -e
-sudo apt install -y build-essential git cmake gdb htop
+sudo apt install -y build-essential git cmake gdb htop m4
 sudo apt install -y llvm clang clang-format 
 sudo apt install -y libboost-all-dev libgoogle-perftools-dev libopenmpi-dev libhwloc-dev 
 sudo apt install -y libblas-dev liblapack-dev 
