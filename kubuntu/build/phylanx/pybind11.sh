@@ -1,5 +1,6 @@
 #!/bin/bash -x
 
+USER=stellar
 SRC_PATH=/home/$USER/src
 BUILD_DIR=/home/$USER/build/pybind11/$2
 INSTALL_DIR=/home/$USER/install/pybind11/$2

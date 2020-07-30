@@ -3,6 +3,7 @@
 FILENAME=$0
 ARGS=$@
 
+USER=stellar
 COMMAND=""
 BUILD_TYPE=""
 

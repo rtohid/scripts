@@ -3,6 +3,7 @@
 FILENAME=$0
 ARGS=$@
 
+USER=stellar
 COMMAND=""
 BUILD_TYPE=""
 PHYLANX_REMOTE=""
@@ -140,19 +141,19 @@ fi
 
 if [ -z "$INSTALL_DIR" ]; then
     INSTALL_ROOT=/home/$USER/install
-    INSTALL_DIR=$INSTALL_ROOT/phylanx_tensor/$BUILD_TYPE
+    INSTALL_DIR=$INSTALL_ROOT/phylanx/$BUILD_TYPE
 fi
 
 if [ -z "$HPX_CMAKE_PATH" ]; then
-    HPX_CMAKE_PATH=$INSTALL_ROOT/hpx/$BUILD_TYPE/lib/cmake/HPX/
+    HPX_CMAKE_PATH=$INSTALL_ROOT/hpx/$BUILD_TYPE/lib64/cmake/HPX/
 fi
 
 if [ -z "$MALLOC" ]; then
     MALLOC="system"
 fi
 
-PHYLANX_DIR=$SRC_PATH/phylanx_tensor
-BUILD_DIR=/home/$USER/build/phylanx_tensor/$BUILD_TYPE
+PHYLANX_DIR=$SRC_PATH/phylanx
+BUILD_DIR=/home/$USER/build/phylanx/$BUILD_TYPE
 
 if [ "$COMMAND" = "" ]; then
     echo "Please provide options, see $0 --help for more info."
@@ -235,7 +236,7 @@ build()
         $PHYLANX_DIR
     set +x
 
-    make -j 10 # VERBOSE=1
+    # make -j 10 # VERBOSE=1
 
     if [ "$TEST" = true ]; then
         make -j 12 tests
@@ -246,7 +247,7 @@ install()
 {
     build
     echo "Installing Phylanx in: $INSTALL_DIR"
-    make -j 12 install
+    make -j 1 install
 }
 
 if [ "$COMMAND" = "build" ]; then
