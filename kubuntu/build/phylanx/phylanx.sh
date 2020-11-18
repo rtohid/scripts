@@ -226,6 +226,8 @@ build()
         -Dblaze_DIR=$INSTALL_ROOT/blaze/$BUILD_TYPE/share/blaze/cmake/          \
         -DBlazeTensor_DIR=$INSTALL_ROOT/blaze_tensor/$BUILD_TYPE/share/blaze/cmake/          \
         -DPHYLANX_WITH_BLAZE_TENSOR=ON                                          \
+        -DPHYLANX_WITH_EXAMPLES=OFF                                             \
+        -DPHYLANX_WITH_TESTS=OFF                                                \
         -Dpybind11_DIR=$INSTALL_ROOT/pybind11/$BUILD_TYPE/share/cmake/pybind11/ \
         -DCMAKE_BUILD_TYPE=$BUILD_TYPE                                          \
         -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR                                     \
