@@ -178,7 +178,8 @@ build()
             -DMPI_CXX_COMPILER=mpicxx                                           \
             -DMPI_C_COMPILER=mpicc                                              \
             -DHPX_WITH_THREAD_IDLE_RATES=ON                                     \
-            -DHPX_WITH_MALLOC=system                                            \
+            -DHPX_WITH_MALLOC=tcmalloc                                          \
+            -DTCMALLOC_LIBRARY=/usr/lib/x86_64-linux-gnu/libtcmalloc_debug.so.4 \
             -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR                                 \
             -DHPX_WITH_EXAMPLES=OFF                                             \
             -DHPX_WITH_VIM_YCM=ON                                               \
