@@ -183,6 +183,7 @@ build()
             -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR                                 \
             -DHPX_WITH_EXAMPLES=OFF                                             \
             -DHPX_WITH_VIM_YCM=ON                                               \
+            -DHPX_WITH_FETCH_ASIO=ON                                            \
             -Wdev                                                               \
             $HPX_DIR
     set +x
