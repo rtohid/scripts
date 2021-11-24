@@ -107,3 +107,4 @@ cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_CXX_FLAGS="-std=c++17" \
 cmake --build cmake-build/$BUILD_TYPE/ --parallel
 cmake --install cmake-build/$BUILD_TYPE/ --prefix cmake-install/$BUILD_TYPE
 
+cp $PREFIX/phylanx_halide/cmake-build/$BUILD_TYPE/halide/blas/libphylanx_blas_plugin.so $PREFIX/phylanx/cmake-build/$BUILD_TYPE/lib/phylanx/
