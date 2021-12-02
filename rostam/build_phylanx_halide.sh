@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PREFIX=/work/${USER}/halide_phylanx
+PREFIX=/work/${USER}/PhylanxHalide
 BUILD_TYPE=Release
 
 mkdir -p $PREFIX && cd $PREFIX
@@ -25,8 +25,10 @@ cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
       -DHPX_WITH_THREAD_IDLE_RATES=ON \
       -DHPX_WITH_MALLOC=tcmalloc \
       -DHPX_WITH_EXAMPLES=OFF \
-      -DAPEX_WITH_OTF2=ON \
+      -DHPX_WITH_PAPI=ON \
       -DHPX_WITH_APEX=ON \
+      -DAPEX_WITH_OTF2=ON \
+      -DAPEX_WITH_PAPI=ON \
       -DHPX_WITH_FETCH_ASIO=ON \
       -Wdev -S . -B cmake-build/$BUILD_TYPE
 
@@ -80,7 +82,7 @@ cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_CXX_FLAGS="-std=c++17" \
       -DPYTHON_EXECUTABLE:FILEPATH=python3.8 \
       -Wdev -S . -B cmake-build/$BUILD_TYPE
 
-cmake --build cmake-build/$BUILD_TYPE/ --parallel 12
+cmake --build cmake-build/$BUILD_TYPE/ --parallel 20
 cmake --install cmake-build/$BUILD_TYPE/ --prefix cmake-install/$BUILD_TYPE
 
 
@@ -101,10 +103,12 @@ cd $PREFIX/phylanx_halide/
 git checkout halide-blas
 cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_CXX_FLAGS="-std=c++17" \
       -DCMAKE_PREFIX_PATH="$PREFIX/hpx/cmake-install/$BUILD_TYPE/lib64/cmake/HPX/;$PREFIX/Halide/cmake-install/$BUILD_TYPE/lib64/cmake/HalideHelpers/;$PREFIX/Halide/cmake-install/$BUILD_TYPE/lib64/cmake/Halide" \
-	-DPhylanx_DIR=$PREFIX/phylanx/cmake-build/$BUILD_TYPE/lib/cmake/Phylanx/ \
-	-S . -B cmake-build/$BUILD_TYPE
+      -DPhylanx_DIR=$PREFIX/phylanx/cmake-build/$BUILD_TYPE/lib/cmake/Phylanx/ \
+      -S . -B cmake-build/$BUILD_TYPE
 
 cmake --build cmake-build/$BUILD_TYPE/ --parallel
 cmake --install cmake-build/$BUILD_TYPE/ --prefix cmake-install/$BUILD_TYPE
 
 cp $PREFIX/phylanx_halide/cmake-build/$BUILD_TYPE/halide/blas/libphylanx_blas_plugin.so $PREFIX/phylanx/cmake-build/$BUILD_TYPE/lib/phylanx/
+
+# python3 $PREFIX/phylanx_halide/profiling/halide_dgemm.py 16 2048 --hpx:print-counter=/papi{locality#*/worker-thread#*}/PAPI_L2_DCM
