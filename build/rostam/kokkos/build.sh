@@ -8,12 +8,19 @@
 module load llvm/14.0.0
 module load cuda/11.5
 
+BUILD_TYPE=Release
+
 BASE_DIR=/work/${USER}/experiments/Kokkos
 
 KOKKOS_DIR=${BASE_DIR}/kokkos
 TUTORIALS_DIR=${BASE_DIR}/kokkos-tutorials
 
-BUILD_TYPE=Release
+
+ARCH=$(
+  case "$(hostname -s)" in
+    (toranj*) echo AMPERE80 ;;
+    (diablo) echo VOLTA70 ;;
+  esac)
 
 # Clone repos
 mkdir -p ${BASE_DIR}
