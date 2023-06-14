@@ -36,6 +36,7 @@ cmake                                \
   -DHPXC_DIR=${HPXC_DIR}             \
   -DOPENMP_ENABLE_LIBOMPTARGET=OFF   \
   -DLIBOMP_OMPD_SUPPORT=OFF          \
+  -DLIBOMP_USE_STDCPPLIB:BOOL=TRUE   \
   -Wdev -S ${OMP_DIR} -B ${BUILD_DIR}
   # -DKA_TRACE=ON                      \
 
