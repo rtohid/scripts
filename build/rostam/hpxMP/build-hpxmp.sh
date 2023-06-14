@@ -9,7 +9,7 @@ PREFIX="${CURRENT_DIR:=$(pwd)}"
 
 BUILD_TYPE=Debug
 LLVM_DIR=${PREFIX}/llvm-project
-LLVM_VERSION=15.0.7
+LLVM_VERSION=16.0.6
 OMP_DIR=${LLVM_DIR}/openmp
 HPX_DIR=${PREFIX}/hpx/cmake-install/${BUILD_TYPE}/lib64/cmake/HPX
 HPXC_DIR=${PREFIX}/hpxc
@@ -34,7 +34,7 @@ cmake                                \
   -DHPX_DIR=${HPX_DIR}               \
   -DWITH_HPXC=ON                     \
   -DHPXC_DIR=${HPXC_DIR}             \
-  -DENABLE_LIBOMPTARGET=OFF          \
+  -DOPENMP_ENABLE_LIBOMPTARGET=OFF   \
   -DLIBOMP_OMPD_SUPPORT=OFF          \
   -Wdev -S ${OMP_DIR} -B ${BUILD_DIR}
   # -DKA_TRACE=ON                      \
