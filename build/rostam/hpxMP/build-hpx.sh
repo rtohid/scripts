@@ -20,7 +20,7 @@ cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE}               \
       -DHPX_WITH_THREAD_IDLE_RATES=ON                \
       -DHPX_WITH_MALLOC=tcmalloc                     \
       -DHPX_WITH_EXAMPLES=OFF                        \
-      -DHPX_WITH_APEX=ON                             \
+      -DHPX_WITH_FETCH_APEX=ON                       \
       -DHPX_WITH_FETCH_ASIO=ON                       \
       -DHPX_WITH_DYNAMIC_HPX_MAIN=OFF                \
       -Wdev -S ${HPX_DIR} -B ${HPX_DIR}/cmake-build/${BUILD_TYPE}
